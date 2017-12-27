@@ -198,6 +198,15 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     ueventd.qcom.rc
 
+# Ramdsik TEMP	
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:root/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.power.rc:root/init.qcom.power.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    $(LOCAL_PATH)/rootdir/etc/ueventd.qcom.rc:root/ueventd.qcom.rc 
+	
+
 # TimeKeep
 PRODUCT_PACKAGES += \
     timekeep \
