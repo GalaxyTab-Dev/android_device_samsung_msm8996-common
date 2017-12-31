@@ -28,6 +28,7 @@
 import init.qcom.power.rc
 import init.qcom.usb.rc
 import init.target.rc
+import init.rilchip.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -1503,6 +1504,22 @@ service timekeep /system/bin/timekeep restore
     group root
     oneshot
     writepid /dev/cpuset/system-background/tasks
+
+service ril-daemon2 /system/bin/rild -c 2
+    class main
+    socket rild2 stream 660 root radio
+    socket rild-debug2 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
+
+service ril-daemon3 /system/bin/rild -c 3
+    class main
+    socket rild3 stream 660 root radio
+    socket rild-debug3 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
 
 service audiod /system/bin/audiod
     class late_start
